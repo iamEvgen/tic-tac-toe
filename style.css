@@ -22,7 +22,6 @@ body {
 }
 
 .box {
-    /* border: 1px red solid; */
     flex: 1;
     max-width: var(--mainWidth);
     display: grid;
@@ -67,10 +66,12 @@ h1 {
     color: black;
     border: 0;
     width: 100%;
+    background-color: rgba(0, 0, 0, 0);
 }
 
 .players input:focus {
     outline: none;
+    background-color: rgba(0, 0, 0, 0);
 }
 
 #resetBtn {

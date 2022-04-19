@@ -54,7 +54,7 @@ const game = (function() {
   resetBtn.addEventListener('dblclick', () => {
     resetGame();
     resetScore();
-    round = 0;
+    resetPlayer();
   })
 
   function resetGame() {
@@ -71,6 +71,12 @@ const game = (function() {
     p1.resetScore();
     p2.resetScore();
     renderScore(false);
+  }
+
+  function resetPlayer() {
+    round = 0;
+    activePlayer = selectFirstPlayer();
+    colorActivePlayer(activePlayer);
   }
 
   function clearMatrix() {
