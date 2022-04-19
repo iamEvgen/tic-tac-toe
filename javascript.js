@@ -116,6 +116,16 @@ const game = (function() {
     player2Score.textContent = p2.getScore();
   }
 
+  function matrixIsFull() {
+    result = '';
+    for (let i = 0; i < 3; i++) {
+      for (let j = 0; j < 3; j++) {
+        result += matrix[i][j];
+      }
+    }
+    return result.length === 9;
+  }
+
   function checkGameOver() {
     for (let i = 0; i < 3; i++) {
       if (
@@ -128,6 +138,10 @@ const game = (function() {
         resetBtn.textContent = `${name} win! Restart!`
         gameOver = true;
         renderScore();
+        return true;
+      } else if (matrixIsFull()) {
+        resetBtn.textContent = 'Tie game! Restart!'
+        gameOver = true;
         return true;
       }
     }
@@ -145,7 +159,6 @@ const game = (function() {
       if (!checkGameOver()) {
         changeActivePlayer();
       }
-      
     }
   }
 
