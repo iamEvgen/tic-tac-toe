@@ -8,13 +8,34 @@
     <title>Tic Tac Toe</title>
 </head>
 <body>
-    <div class="box">
-        <h1>Tic Tac Toe</h1>
-        <div class="players" id="player1">player1</div>
-        <div class="players" id="player2">player2</div>
-        <button id="resetBtn">Restart</button>
-        <div id="field">field</div> 
+    <div id="container">
+        <div class="box">
+            <h1>Tic Tac Toe</h1>
+            <div class="players" id="player1">
+                <input type="text" placeholder="Player 1">
+                <div>symbol: X</div>
+                <div>score: <span id="player1Score">0</span></div>
+            </div>
+            <div class="players" id="player2">
+                <input type="text" placeholder="Player 2">
+                <div>symbol: O</div>
+                <div>score: <span id="player2Score">0</span></div>
+            </div>
+            <button id="resetBtn">Restart (Reset on double click)</button>
+            <div id="field">
+                <div class="cells" id="cell-0-0"></div>
+                <div class="cells" id="cell-0-1"></div>
+                <div class="cells" id="cell-0-2"></div>
+                <div class="cells" id="cell-1-0"></div>
+                <div class="cells" id="cell-1-1"></div>
+                <div class="cells" id="cell-1-2"></div>
+                <div class="cells" id="cell-2-0"></div>
+                <div class="cells" id="cell-2-1"></div>
+                <div class="cells" id="cell-2-2"></div>
+            </div> 
+        </div>
     </div>
+    
     <script src="./javascript.js"></script>
 </body>
 </html>
