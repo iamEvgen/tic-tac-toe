@@ -31,13 +31,16 @@ const p1 = new Players(1, 'X');
 const p2 = new Players(2, 'O');
 
 
-const game = (function() {
-  const cells = document.querySelectorAll('.cells');
+const gameModule = (function() {
   const resetBtn = document.querySelector('#resetBtn');
   const player1 = document.getElementById('player1');
   const player2 = document.getElementById('player2');
   const player1Score = document.querySelector('#player1Score');
   const player2Score = document.querySelector('#player2Score');
+  const modeSelector = document.querySelector('#modeSelector');
+  const humanAva = document.querySelector('#humanAva');
+  const cpuAva = document.querySelector('#cpuAva');
+  let mode = 'cpu';
   let round = 0;
   let gameOver = false;
   let activePlayer = selectFirstPlayer();
@@ -47,9 +50,6 @@ const game = (function() {
     ['', '', '']
   ];
 
-  cells.forEach(cell => {
-    cell.addEventListener('click', insertSign);
-  })
   resetBtn.addEventListener('click', resetGame);
   resetBtn.addEventListener('dblclick', () => {
     resetGame();
@@ -57,9 +57,27 @@ const game = (function() {
     resetPlayer();
   })
 
+  modeSelector.addEventListener('click', changeMode);
+
+  function changeMode() {
+    if (mode === 'cpu') {
+      mode = 'human';
+      humanAva.classList.remove('human');
+      humanAva.classList.add('humanChecked');
+      cpuAva.classList.remove('cpuChecked');
+      cpuAva.classList.add('cpu');
+    } else {
+      mode = 'cpu';
+      humanAva.classList.remove('humanChecked');
+      humanAva.classList.add('human');
+      cpuAva.classList.remove('cpu');
+      cpuAva.classList.add('cpuChecked');
+    }
+  }
+
   function resetGame() {
     clearMatrix();
-    clearField();
+    cellsModule.clearField();
     gameOver = false;
     resetBtn.textContent = 'Restart (Reset on double click)';
     round++;
@@ -85,12 +103,6 @@ const game = (function() {
         matrix[i][j] = '';
       }
     }
-  }
-
-  function clearField() {
-    cells.forEach(cell => {
-      cell.textContent = '';
-    })
   }
 
   function selectFirstPlayer() {
@@ -169,4 +181,23 @@ const game = (function() {
   }
 
   colorActivePlayer(activePlayer);
+
+  return {insertSign};
+})();
+
+
+const cellsModule = (function() {
+  const cells = document.querySelectorAll('.cells');
+  
+  cells.forEach(cell => {
+    cell.addEventListener('click', gameModule.insertSign);
+  })
+
+  function clearField() {
+    cells.forEach(cell => {
+      cell.textContent = '';
+    })
+  }
+
+  return {clearField};
 })();

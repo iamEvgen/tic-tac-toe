@@ -13,12 +13,19 @@
             <h1>Tic Tac Toe</h1>
             <div class="players" id="player1">
                 <input type="text" placeholder="Player 1">
-                <div>symbol: X</div>
+                <div class="miniContainer">
+                    <div class="char">X</div>
+                    <div class="humanChecked"></div>
+                </div>
                 <div>score: <span id="player1Score">0</span></div>
             </div>
             <div class="players" id="player2">
                 <input type="text" placeholder="Player 2">
-                <div>symbol: O</div>
+                <div class="miniContainer" id="modeSelector">
+                    <div class="char">O</div>
+                    <div id="humanAva" class="human"></div>
+                    <div id="cpuAva" class="cpuChecked"></div>
+                </div>
                 <div>score: <span id="player2Score">0</span></div>
             </div>
             <button id="resetBtn">Restart (Reset on double click)</button>

@@ -122,4 +122,55 @@ h1 {
 .players.selected {
     box-shadow: 0px 0px 5px 5px rgba(7, 242, 226, 0.9);
     transition: 1s;
+    transform: scale(1.1);
+}
+
+.miniContainer {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.char {
+    color: rgb(255, 0, 0);
+    font-size: 2rem;
+    /* line-height: 2rem; */
+}
+
+.human,
+.cpu,
+.humanChecked,
+.cpuChecked {
+    background-size: 30px 30px;
+    width: 30px;
+    height: 30px;
+    background-repeat: no-repeat;
+}
+
+.human,
+.cpu {
+    opacity: 30%;
+    transition: 0.5s;
+}
+
+.human {
+    background-image: url(./img/human.png);
+}
+
+.cpu {
+    background-image: url(./img/cpu.png);
+}
+
+.humanChecked {
+    background-image: url(./img/human-checked.png);
+}
+
+.cpuChecked {
+    background-image: url(./img/cpu-checked.png);
+}
+
+#modeSelector:hover * {
+    transition: 0.5s;
+    cursor: pointer;
+    opacity: 1;
 }
