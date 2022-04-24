@@ -3,6 +3,7 @@
 :root {
     --mainFont: font-family: 'Indie Flower', cursive;
     --mainWidth: min(350px, 90vw);
+    --accentColor: rgba(7, 242, 226, 0.9);
 }
 
 body {
@@ -120,8 +121,8 @@ h1 {
 }
 
 .players.selected {
-    box-shadow: 0px 0px 5px 5px rgba(7, 242, 226, 0.9);
-    transition: 1s;
+    box-shadow: 0px 0px 5px 5px var(--accentColor);
+    transition: 0.5s;
     transform: scale(1.1);
 }
 
@@ -134,7 +135,6 @@ h1 {
 .char {
     color: rgb(255, 0, 0);
     font-size: 2rem;
-    /* line-height: 2rem; */
 }
 
 .human,
@@ -175,12 +175,15 @@ h1 {
     opacity: 1;
 }
 
-.colorWinnerCell {
-    background-color: rgb(174, 255, 196);
+#resetBtn.winnerIs {
+    box-shadow: 0px 0px 5px 5px var(--accentColor);
+    transition: 0.5s;
 }
 
-#resetBtn.winnerIs {
-    box-shadow: 0px 0px 5px 5px rgba(7, 242, 226, 0.9);
-    /* background-color: rgba(7, 242, 226, 0.9); */
-    transition: 1s;
+.colorTieGame {
+    background-color: rgb(255, 174, 174);
+}
+
+.colorWinnerCell {
+    background-color: rgb(174, 255, 196);
 }

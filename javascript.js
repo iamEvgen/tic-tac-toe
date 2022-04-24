@@ -86,9 +86,7 @@ const gameModule = (function() {
     gameOver = false;
     resetBtn.textContent = 'Restart (Reset on double click)';
     round++;
-    console.log(fullReset);
     if (fullReset) {
-      console.log(1);
       round = 0;
       resetScore();
     }
@@ -124,7 +122,6 @@ const gameModule = (function() {
   }
 
   function colorActivePlayer() {
-    setTimeout(makeAiShoot, 500);
     if (activePlayer.getNumber() === 1) {
       player2.classList.remove('selected');
       player1.classList.add('selected');
@@ -132,14 +129,17 @@ const gameModule = (function() {
       player1.classList.remove('selected');
       player2.classList.add('selected');
     }
+    if (mode === 'cpu' && activePlayer.getNumber() === 2 && activePlayer.getSign() === 'O') {
+      setTimeout(makeAiShoot, 1000);
+    }
   }
 
   function makeAiShoot() {
-    if (mode === 'cpu' && activePlayer.getNumber() === 2) {
+    if (mode === 'cpu' && activePlayer.getNumber() === 2 && activePlayer.getSign() === 'O') {
       point = aiModule.whereToShoot();
       i = point[0];
       j = point[1];
-      setTimeout(makeShootInField, 500, i, j);
+      setTimeout(makeShootInField, 0, i, j);
     }
   }
 
@@ -182,6 +182,7 @@ const gameModule = (function() {
     } else if (matrixIsFull()) {
       resetBtn.textContent = 'Tie game! Restart!';
       gameOverStyle();
+      cellsModule.colorTieGame();
       return true;
     }
   }
@@ -240,7 +241,13 @@ const cellsModule = (function() {
 
   function resetFieldStyle() {
     cells.forEach(cell => {
-      cell.classList.remove('colorWinnerCell');
+      cell.classList.remove('colorWinnerCell', 'colorTieGame');
+    })
+  }
+
+  function colorTieGame() {
+    cells.forEach(cell => {
+      cell.classList.add('colorTieGame');
     })
   }
 
@@ -254,7 +261,7 @@ const cellsModule = (function() {
     }
   }
 
-  return {renderField, colorWinner, resetFieldStyle, winnerLines};
+  return {renderField, colorWinner, colorTieGame, resetFieldStyle, winnerLines};
 })();
 
 
