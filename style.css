@@ -174,3 +174,13 @@ h1 {
     cursor: pointer;
     opacity: 1;
 }
+
+.colorWinnerCell {
+    background-color: rgb(174, 255, 196);
+}
+
+#resetBtn.winnerIs {
+    box-shadow: 0px 0px 5px 5px rgba(7, 242, 226, 0.9);
+    /* background-color: rgba(7, 242, 226, 0.9); */
+    transition: 1s;
+}
