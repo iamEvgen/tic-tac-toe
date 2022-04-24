@@ -57,13 +57,8 @@ const gameModule = (function() {
     ['', '', '']
   ];
 
-  resetBtn.addEventListener('click', resetGame);
-  resetBtn.addEventListener('dblclick', () => {
-    resetGame();
-    resetScore();
-    resetPlayer();
-  })
-
+  resetBtn.addEventListener('click', () => resetGame());
+  resetBtn.addEventListener('dblclick', () => resetGame(true));
   modeSelector.addEventListener('click', changeMode);
 
   function changeMode() {
@@ -83,7 +78,7 @@ const gameModule = (function() {
     resetGame();
   }
 
-  function resetGame() {
+  function resetGame(fullReset) {
     clearMatrix();
     cellsModule.resetFieldStyle();
     cellsModule.renderField();
@@ -91,6 +86,12 @@ const gameModule = (function() {
     gameOver = false;
     resetBtn.textContent = 'Restart (Reset on double click)';
     round++;
+    console.log(fullReset);
+    if (fullReset) {
+      console.log(1);
+      round = 0;
+      resetScore();
+    }
     activePlayer = selectFirstPlayer();
     colorActivePlayer();
   }
@@ -99,12 +100,6 @@ const gameModule = (function() {
     p1.resetScore();
     p2.resetScore();
     renderScore(false);
-  }
-
-  function resetPlayer() {
-    round = 0;
-    activePlayer = selectFirstPlayer();
-    colorActivePlayer();
   }
 
   function clearMatrix() {
@@ -129,7 +124,7 @@ const gameModule = (function() {
   }
 
   function colorActivePlayer() {
-    makeAiShoot();
+    setTimeout(makeAiShoot, 500);
     if (activePlayer.getNumber() === 1) {
       player2.classList.remove('selected');
       player1.classList.add('selected');
@@ -144,7 +139,7 @@ const gameModule = (function() {
       point = aiModule.whereToShoot();
       i = point[0];
       j = point[1];
-      setTimeout(makeShootInField, 1000, i, j);
+      setTimeout(makeShootInField, 500, i, j);
     }
   }
 
