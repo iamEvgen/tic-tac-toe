@@ -355,7 +355,22 @@ const aiModule = (function() {
   }
 
   function randomChoice(arr) {
-    return arr[Math.floor(arr.length * Math.random())];
+    // This is hard mode, medium mode in the previous commit, easy is absolut random in free cell =)
+    const quantity = {};
+
+    for (let point of arr) {
+      let key = `${point[0]}${point[1]}`
+      if (key in quantity) {
+        quantity[key] += 1;
+      } else {
+        quantity[key] = 1;
+      }
+    }
+
+    let tmpArr = Object.values(quantity);
+    let max = Math.max(...tmpArr);
+    const bestPoints = arr.filter(elem => quantity[`${elem[0]}${elem[1]}`] === max);
+    return bestPoints[Math.floor(bestPoints.length * Math.random())];
   }
   
   function whereToShoot() {
